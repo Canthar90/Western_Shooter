@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.8" tiledversion="1.8.6" name="Objects" tilewidth="800" tileheight="628" tilecount="19" columns="0">
+<tileset version="1.9" tiledversion="1.9.2" name="objects" tilewidth="800" tileheight="628" tilecount="19" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <image width="576" height="600" source="../graphics/objects/bank.png"/>
