@@ -4,6 +4,7 @@ from pygame.math import Vector2 as vector
 from player import Player
 from pytmx.util_pygame import load_pygame
 from sprite import Sprite, Bullet
+from monster import Coffin, Cactus
 
 
 class Allsprites(pygame.sprite.Group):
@@ -19,7 +20,6 @@ class Allsprites(pygame.sprite.Group):
         self.offset.x = player.rect.centerx - WINDOW_WIDTH/2
         self.offset.y = player.rect.centery - WINDOW_HEIGHT/2
         
-        # blit the surfaces 
         # bg
         self.display_surface.blit(self.bg, -self.offset)
         # sprites inside of the group (player)
@@ -66,6 +66,14 @@ class Game:
 				self.player = Player(pos=(obj.x, obj.y), groups=self.all_sprites, 
                          path=PATHS['player'], collision_sprites=self.obstacles,
                          create_bullet = self.create_bullet)
+    
+			if obj.name == 'Coffin':
+				Coffin(pos=(obj.x, obj.y), groups=self.all_sprites,
+           				path=PATHS['coffin'], collision_sprites=self.obstacles)
+    
+			if obj.name == "Cactus":
+				Cactus(pos=(obj.x, obj.y), groups=self.all_sprites,
+           				path=PATHS['cactus'], collision_sprites=self.obstacles)
 
 	def run(self):
 		while True:
