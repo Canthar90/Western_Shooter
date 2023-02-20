@@ -39,10 +39,7 @@ class Player(pygame.sprite.Sprite):
                     loc_path = folder[0].replace("\\", "/") + "/" + name
                     surf = pygame.image.load(loc_path).convert_alpha()
                     key = folder[0].split('\\')[1]
-                    print(key + " " + name)
                     self.animations[key].append(surf)
-        print(self.animations)
-        
         
     def input(self):
         keys =  pygame.key.get_pressed()
