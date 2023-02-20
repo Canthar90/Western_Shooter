@@ -44,8 +44,8 @@ class Game:
   
 		self.setup()
   
-	def create_bullet(self, pos, direction):
-		Bullet(pos, direction, self.bullet_surf, [self.all_sprites, self.bullets])
+	def create_bullet(self, pos, direction, up_down):
+		Bullet(pos, direction, self.bullet_surf, [self.all_sprites, self.bullets], up_down)
 
   
 	def setup(self):

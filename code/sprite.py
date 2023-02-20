@@ -10,7 +10,7 @@ class Sprite(pygame.sprite.Sprite):
         
         
 class Bullet(pygame.sprite.Sprite):
-    def __init__(self, pos, direction, surf, groups):
+    def __init__(self, pos, direction, surf, groups, up_down):
         super().__init__(groups)
         self.image = surf
         self.rect =  self.image.get_rect(center = pos)
@@ -20,6 +20,12 @@ class Bullet(pygame.sprite.Sprite):
         self.direction = direction
         self.speed =  400
         
+        self.up_down = up_down
+        
     def update(self, dt):
         self.pos += self.direction * self.speed * dt
         self.rect.center = (round(self.pos.x), round(self.pos.y))
+        if "down" in self.up_down:
+            self.rect.centerx -= 20
+        elif "up" in self.up_down:
+            self.rect.centerx += 20

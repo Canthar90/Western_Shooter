@@ -118,12 +118,9 @@ class Player(pygame.sprite.Sprite):
         self.frame_index += 7 * dt
         
         if int(self.frame_index) == 2 and self.attacking and not self.bullet_shoot:
-            # if self.status.split("_")[0]:
-            #     supp_rect = self.rect.center
-            #     supp_rect.centerx -= 15
             bullet_start_pos = self.rect.center + self.bullet_direction * 75
             
-            self.create_bullet(pos=bullet_start_pos, direction=self.bullet_direction)
+            self.create_bullet(pos=bullet_start_pos, direction=self.bullet_direction, up_down=self.status)
             self.bullet_shoot = True
         
         if self.frame_index >= len(current_animation):
