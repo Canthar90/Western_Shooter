@@ -2,6 +2,9 @@ import pygame, sys
 from settings import * 
 from pygame.math import Vector2 as vector
 from player import Player
+from pytmx.util_pygame import load_pygame
+from sprite import Sprite
+
 
 class Allsprites(pygame.sprite.Group):
     def __init__(self):
@@ -20,7 +23,7 @@ class Allsprites(pygame.sprite.Group):
         # bg
         self.display_surface.blit(self.bg, -self.offset)
         # sprites inside of the group (player)
-        for sprite in self.sprites():
+        for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
             offset_rect = sprite.image.get_rect(center=sprite.rect.center)
             offset_rect.center -= self.offset
             self.display_surface.blit(sprite.image, offset_rect)
@@ -38,7 +41,21 @@ class Game:
 		self.setup()
   
 	def setup(self):
-		self.player = Player((200, 200), self.all_sprites, PATHS['player'], None)
+		tmx_map = load_pygame("data\map.tmx")
+  
+		# tiles
+		for x, y, surf in tmx_map.get_layer_by_name('fence').tiles():
+			Sprite(pos=(x*64,y*64), surf=surf, groups=self.all_sprites)
+		
+  
+		# objects
+		for obj in tmx_map.get_layer_by_name('objects'):
+			Sprite((obj.x, obj.y), obj.image, self.all_sprites)
+   
+		# entities
+		for obj in tmx_map.get_layer_by_name("entities"):
+			if obj.name == "Player":
+				self.player = Player((obj.x, obj.y), self.all_sprites, PATHS['player'], None)
 
 	def run(self):
 		while True:
