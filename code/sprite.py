@@ -6,4 +6,4 @@ class Sprite(pygame.sprite.Sprite):
         super().__init__(groups)
         self.image = surf
         self.rect = self.image.get_rect(topleft=pos)
-        self.hittbox = self.rect.inflate(0, -self.rect.height/3)
+        self.hittbox = self.rect.inflate(0, -self.rect.height/5)

@@ -38,6 +38,8 @@ class Game:
   
 		# group
 		self.all_sprites = Allsprites()
+		self.obstacles = pygame.sprite.Group()
+  
 		self.setup()
   
 	def setup(self):
@@ -45,17 +47,17 @@ class Game:
   
 		# tiles
 		for x, y, surf in tmx_map.get_layer_by_name('fence').tiles():
-			Sprite(pos=(x*64,y*64), surf=surf, groups=self.all_sprites)
+			Sprite(pos=(x*64,y*64), surf=surf, groups=[self.all_sprites, self.obstacles])
 		
   
 		# objects
 		for obj in tmx_map.get_layer_by_name('objects'):
-			Sprite((obj.x, obj.y), obj.image, self.all_sprites)
+			Sprite((obj.x, obj.y), obj.image, [self.all_sprites, self.obstacles])
    
 		# entities
 		for obj in tmx_map.get_layer_by_name("entities"):
 			if obj.name == "Player":
-				self.player = Player((obj.x, obj.y), self.all_sprites, PATHS['player'], None)
+				self.player = Player((obj.x, obj.y), self.all_sprites, PATHS['player'], self.obstacles)
 
 	def run(self):
 		while True:
