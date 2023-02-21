@@ -85,3 +85,5 @@ class Player(Entity):
         self.get_status()
         self.move(dt)
         self.animate(dt)
+        self.invincibility_timer()
+        print(self.health)

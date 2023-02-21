@@ -26,6 +26,24 @@ class Entity(pygame.sprite.Sprite):
         # attack
         self.attacking = False
         
+        self.health = 3
+        self.is_vurnable = True
+        self.hit_time = 0
+        
+    def damage(self):
+        if self.is_vurnable:
+            self.health -= 1
+            self.is_vurnable = False
+            self.hit_time =  pygame.time.get_ticks()
+            if self.health <= 0:
+                print("dead")
+                
+    def invincibility_timer(self):
+        if not self.is_vurnable:
+            current_time = pygame.time.get_ticks()
+            
+            if current_time -  self.hit_time > 400:
+                self.is_vurnable = True
         
     def import_assets(self, path):
         self.animations = {}
