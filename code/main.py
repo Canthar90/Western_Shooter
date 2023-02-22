@@ -68,9 +68,7 @@ class Game:
 				bullet.kill()
 				for sprite in collide_sprite:
 					sprite.damage()
-		pass
 				
-
 	def setup(self):
 		tmx_map = load_pygame("data\map.tmx")
   
