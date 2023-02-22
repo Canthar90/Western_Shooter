@@ -61,6 +61,7 @@ class Coffin(Entity, Monster):
             
         if self.attacking:
             self.status = self.status.split("_")[0] + '_attack'
+            self.attacking = False
 
             
     def animate(self, dt):
@@ -125,10 +126,10 @@ class Cactus(Entity, Monster):
         if int(self.frame_index) == 6 and self.attacking and not self.bullet_shot:
             direction = self.get_player_distance_direction()[1]
             
-            pos = self.rect.center + direction * 150
+            pos = self.rect.center + direction * 180
             self.bullet_shot = True
-            self.create_bullet(pos=pos, direction=self.direction,
-                               up_down=self.status)
+            self.create_bullet(pos=pos, direction=direction,
+                               up_down=self.status)   
         
         self.frame_index += 7 * dt
             

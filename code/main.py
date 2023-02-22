@@ -68,6 +68,7 @@ class Game:
 				bullet.kill()
 				for sprite in collide_sprite:
 					sprite.damage()
+		pass
 				
 
 	def setup(self):

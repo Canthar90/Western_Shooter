@@ -14,13 +14,12 @@ class Bullet(pygame.sprite.Sprite):
         super().__init__(groups)
         self.image = surf
         self.mask = pygame.mask.from_surface(self.image)
-        self.rect =  self.image.get_rect(center = pos)
+        self.rect =  self.image.get_rect(center=pos)
         
         # float based movement
         self.pos = pygame.math.Vector2(self.rect.center)
         self.direction = direction
-        self.speed =  400
-        
+        self.speed =  450   
         self.up_down = up_down
         
     def update(self, dt):
