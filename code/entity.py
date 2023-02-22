@@ -27,10 +27,13 @@ class Entity(pygame.sprite.Sprite):
         
         # attack
         self.attacking = False
+        self.damage_sound = pygame.mixer.Sound("sound\hit.mp3")
+        self.damage_sound.set_volume(0.6)
         
         self.health = 3
         self.is_vurnable = True
         self.hit_time = 0
+        
     
     def blink(self):
         if not self.is_vurnable and self.wave_value():
@@ -51,7 +54,7 @@ class Entity(pygame.sprite.Sprite):
             self.health -= 1
             self.is_vurnable = False
             self.hit_time =  pygame.time.get_ticks()
-            print("uugh")
+            self.damage_sound.play()
                     
     def check_death(self):
         if self.health <= 0:
