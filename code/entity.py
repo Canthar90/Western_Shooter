@@ -35,8 +35,11 @@ class Entity(pygame.sprite.Sprite):
             self.health -= 1
             self.is_vurnable = False
             self.hit_time =  pygame.time.get_ticks()
-            if self.health <= 0:
-                print("dead")
+            print("uugh")
+                    
+    def check_death(self):
+        if self.health <= 0:
+            self.kill()
                 
     def invincibility_timer(self):
         if not self.is_vurnable:

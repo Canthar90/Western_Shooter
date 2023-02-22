@@ -2,6 +2,7 @@ import pygame
 import sys
 from pygame.math import Vector2 as vector
 from entity import Entity
+import sys
 
 
 class Player(Entity):
@@ -79,11 +80,17 @@ class Player(Entity):
                 self.attacking = False
                 
         self.image = current_animation[int(self.frame_index)]
+    
+    def check_death(self):
+        if self.health < 0:
+            pygame.quit()
+            sys.exit()
         
     def update(self, dt):
         self.input()
         self.get_status()
         self.move(dt)
         self.animate(dt)
+        self.check_death()
         self.invincibility_timer()
-        print(self.health)
+        
