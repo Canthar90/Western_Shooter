@@ -49,14 +49,17 @@ class Game:
 		Bullet(pos, direction, self.bullet_surf, [self.all_sprites, self.bullets], up_down)
 
 	def bullet_collision(self):
-		if pygame.sprite.spritecollide(self.player, self.bullets, True):
+		if pygame.sprite.spritecollide(self.player, self.bullets,
+                                 True, pygame.sprite.collide_mask):
 			self.player.damage()
 		
 		for sprite in self.obstacles:
-			pygame.sprite.spritecollide(sprite, self.bullets, True)
+			pygame.sprite.spritecollide(sprite, self.bullets,
+                               True, pygame.sprite.collide_mask)
    
 		for bullet in self.bullets:
-			collide_sprite = pygame.sprite.spritecollide(bullet, self.monsters, False)
+			collide_sprite = pygame.sprite.spritecollide(bullet, self.monsters, 
+                                                False, pygame.sprite.collide_mask)
 			if collide_sprite:
 				bullet.kill()
 				for sprite in collide_sprite:
@@ -100,7 +103,7 @@ class Game:
 				if event.type == pygame.QUIT:
 					pygame.quit()
 					sys.exit()
-			dt = self.clock.tick() / 1000
+			dt = self.clock.tick(200) / 1000
    
 			# update groups
 			self.all_sprites.update(dt)
