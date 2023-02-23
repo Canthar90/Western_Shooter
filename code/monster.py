@@ -61,7 +61,7 @@ class Coffin(Entity, Monster):
             
         if self.attacking:
             self.status = self.status.split("_")[0] + '_attack'
-            self.attacking = False
+            
 
             
     def animate(self, dt):
